@@ -1,14 +1,19 @@
 import json
 from flask import Flask, request, Response, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
-notes = {0: "Frontend is using React", 1: "Backend is using Flask", 2: "Have fun!"}
+# notes = {0: "Frontend is using React", 1: "Backend is using Flask", 2: "Have fun!"}
 
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+
+@app.route("/api/data/", methods=['GET'])
+def get_data():
+    data = {"message": "hello from flask!"}
+    return jsonify(data)
+
 
 
 # @app.route("/api/v1/notes", methods=["GET", "POST"])
